@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Surat Cinta Untukmu 💌</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+        overflow-x: hidden;
+        font-family: "Segoe UI", sans-serif;
+        position: relative;
+      }
+
+      .container-love {
+        padding-top: 80px;
+        text-align: center;
+        color: #fff;
+      }
+
+      .btn-love {
+        background-color: #ff4d6d;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 50px;
+        color: white;
+        margin: 10px;
+      }
+
+      .btn-love:hover {
+        background-color: #ff1f4b;
+      }
+
+      .love-img {
+        width: 100px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* Love rain effect */
+      .love {
+        position: fixed;
+        color: red;
+        font-size: 20px;
+        animation: fall 6s linear infinite;
+        z-index: 0;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+
+      /* Music button style */
+      .music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #ff4d6d;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      .music-btn:hover {
+        background-color: #ff1f4b;
+      }
+
+      .gallery-section {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 15px;
+        margin: 20px auto;
+        display: none;
+      }
+
+      .gallery-img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-img:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop autoplay>
+      <source
+        src="https://www.bensound.com/bensound-music/bensound-love.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <button id="musicButton" class="music-btn">
+      <span id="musicIcon">🔈</span>
+    </button>
+
+    <div class="container-love">
+      <center><h1 class="love-img">💖</h1></center>
+      <h1 class="mt-4">Hai Cintaku</h1>
+      <p class="lead">
+        Kamu adalah hal terbaik yang pernah hadir dalam hidupku.
+      </p>
+      <button class="btn-love" onclick="showLetter()">Buka Surat Cinta</button>
+      <button class="btn btn-outline-light" onclick="toggleGallery()">
+        Lihat Kenangan 📸
+      </button>
+    </div>
+
+    <div class="container">
+      <div id="gallerySection" class="gallery-section">
+        <h3 class="text-center mb-4">Kenangan Indah Kita 💞</h3>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <img src="Gambar 1.jpg" class="gallery-img" alt="Memory 1" />
+          </div>
+          <div class="col-md-4">
+            <img src="Gambar 2.jpg" class="gallery-img" alt="Memory 2" />
+          </div>
+          <div class="col-md-4">
+            <img src="Gambar 3.jpg" class="gallery-img" alt="Memory 3" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Surat Cinta -->
+    <div
+      class="modal fade"
+      id="loveLetterModal"
+      tabindex="-1"
+      aria-labelledby="letterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="letterTitle">
+              Surat Cinta Untukmu 💌 <br />Tiara Vebya Rahmi Queen
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Tutup"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Sayangku</p>
+            <p>
+              Aku bersyukur setiap hari karena kamu hadir dalam hidupku.
+              Senyummu, perhatianmu, semuanya begitu berarti. Aku tidak bisa
+              membayangkan hari-hariku tanpamu.
+            </p>
+            <p>Terima kasih sudah menjadi pelangi di hidupku. I love you 💕</p>
+            <p class="text-end">— Yopi 😘</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Galeri Kenangan Modal -->
+    <div
+      class="modal fade"
+      id="galleryModal"
+      tabindex="-1"
+      aria-labelledby="galleryTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="galleryTitle">
+              Kenangan Indah Kita 💞
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Tutup"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <img src="Gambar 1.jpg" class="gallery-img" alt="Memory 1" />
+              </div>
+              <div class="col-md-4">
+                <img src="Gambar 2.jpg" class="gallery-img" alt="Memory 2" />
+              </div>
+              <div class="col-md-4">
+                <img src="Gambar 3.jpg" class="gallery-img" alt="Memory 3" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Love Rain -->
+    <script>
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("love");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 10 + "px";
+        heart.innerHTML = "❤️";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }
+
+      setInterval(createHeart, 300);
+    </script>
+
+    <!-- Bootstrap & Modal Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function showLetter() {
+        const modal = new bootstrap.Modal(
+          document.getElementById("loveLetterModal")
+        );
+        modal.show();
+      }
+
+      function toggleGallery() {
+        const gallery = document.getElementById("gallerySection");
+        if (gallery.style.display === "none" || gallery.style.display === "") {
+          gallery.style.display = "block";
+          gallery.scrollIntoView({ behavior: "smooth" });
+        } else {
+          gallery.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
